@@ -1,33 +1,45 @@
 'use client'
+import { useRef } from 'react';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFacebookF, faInstagram } from "@fortawesome/free-brands-svg-icons"
 import toast, { Toaster } from 'react-hot-toast';
 
-const mailchimp = require('@mailchimp/mailchimp_marketing');
-
-mailchimp.setConfig({
-  apiKey: process.env.MAILCHIMP_KEY,
-  server: process.env.MAILCHIMP_SERVER,
-});
-
-async function signUp(email) {
-  try {
-    const response = await mailchimp.lists.addListMember('a0672f80c9', {
-      email_address: email,
-      status: "subscribed",
-    });
-    console.log(response);
-    toast.success('Thanks for signing up!');
-    // clear form
-    document.querySelector('.email-form').reset();
-  } catch (error) {
-    console.log(error);
-    toast.error('Something went wrong. Please try again.');
-  }
-}
-
 export default function Home() {
+
+    const inputRef = useRef(null);
+
+    const subscribe = async (e) => {
+      e.preventDefault();
+      const email = inputRef.current.value;
+
+      // if (!email) {
+      //   toast.error('Please enter an email address.');
+      //   return;
+      // }
+
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      try {
+        const json = await res.json();
+        if (json.error) {
+          toast.error(json.error);
+        } else {
+          inputRef.current.value = '';
+          toast.success('Thanks for signing up! Keep an eye on your inbox for news and updates.');
+        }
+      } catch (error) {
+        console.log(error);
+        toast.error('Something went wrong. Please try again.');
+      }
+  }
+
   return (
     <main>
       <Toaster />
@@ -38,12 +50,10 @@ export default function Home() {
             <p className="text-base mobile:text-lg mt-4">We&apos;re building a new way to experience the joy of Legos. Sign up and be the first to know when we launch!</p>
             <div className="email-form">
               <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                signUp(e.target.email.value);
-              }}
+              onSubmit={subscribe}
               className="pt-6 flex flex-col mobile:flex-row w-full gap-4 mobile:gap-0 items-center justify-center mobile:justify-start">
                 <input
+                  ref={inputRef}
                   className="w-full mobile:w-fit rounded-full mobile:rounded-l-full mobile:rounded-r-none bg-gray-100 p-2 px-4 pr-6"
                   type="email"
                   name="email"
