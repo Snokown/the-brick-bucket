@@ -35,7 +35,7 @@ export default function Home() {
         <div className="container desktop:px-24 mx-auto p-8 mobile:pt-24 items-center">
           <div className="mobile:w-1/2">
             <h1 className="text-xl mobile:text-4xl font-extrabold">The Brick Bucket</h1>
-            <p className="text-base mobile:text-lg mt-4">We're building a new way to experience the joy of Legos. Sign up and be the first to know when we launch!</p>
+            <p className="text-base mobile:text-lg mt-4">We&apos;re building a new way to experience the joy of Legos. Sign up and be the first to know when we launch!</p>
             <div className="email-form">
               <form
               onSubmit={(e) => {
@@ -65,7 +65,7 @@ export default function Home() {
       </section>
       <section className="gradient-bg-section min-h-[500px] flex items-center mobile:pt-48 desktop:pt-24">
           <div className="container mx-auto p-8 mobile:pt-24 desktop:px-24 items-center">
-            <h1 className="text-dark-text mobile:text-white mb-6 text-xl mobile:text-4xl font-extrabold">What You'll Get</h1>
+            <h1 className="text-dark-text mobile:text-white mb-6 text-xl mobile:text-4xl font-extrabold">What You&apos;ll Get</h1>
             <div className="grid mobile:grid-cols-3 items-center gap-8">
               <div className="info-card w-full h-full p-6 border-solid border-2 bg-dark-text border-yellow text-white rounded-lg">
                 <p>Unleash your creativity with a new selection of Lego sets to choose from each month.</p>
