@@ -11,12 +11,18 @@ export default function Home() {
 
     const subscribe = async (e) => {
       e.preventDefault();
+
+      // disable the button so we can't resubmit while we wait
+      document.querySelector('.signupBtn').disabled = true;
+
       const email = inputRef.current.value;
 
-      // if (!email) {
-      //   toast.error('Please enter an email address.');
-      //   return;
-      // }
+      if (!email) {
+        toast.error('Please enter an email address.');
+        // re-enable the button
+        document.querySelector('.signupBtn').disabled = false;
+        return;
+      }
 
       const res = await fetch('/api/subscribe', {
         method: 'POST',
@@ -38,6 +44,9 @@ export default function Home() {
         console.log(error);
         toast.error('Something went wrong. Please try again.');
       }
+
+      // re-enable the button
+      document.querySelector('.signupBtn').disabled = false;
   }
 
   return (
@@ -60,7 +69,7 @@ export default function Home() {
                   placeholder="email address"
                   />
                   <button
-                    className="rounded-full bg-black text-white p-2 px-6 signupBtn"
+                    className="disabled:opacity-75 rounded-full bg-black text-white p-2 px-6 signupBtn"
                     type="submit"
                     >Get Notified</button>
               </form>
