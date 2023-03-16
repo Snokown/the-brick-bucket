@@ -1,6 +1,6 @@
 'use client'
 import { useRef } from 'react';
-
+import Image from 'next/image'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFacebookF, faInstagram } from "@fortawesome/free-brands-svg-icons"
 import toast, { Toaster } from 'react-hot-toast';
@@ -55,8 +55,14 @@ export default function Home() {
       <section className="main min-h-[500px] z-10 relative">
         <div className="container desktop:px-24 mx-auto p-8 mobile:pt-24 items-center">
           <div className="mobile:w-1/2">
-            <h1 className="text-xl mobile:text-4xl font-extrabold">The Brick Bucket</h1>
-            <p className="text-base mobile:text-lg mt-4">We&apos;re building a new way to experience the joy of Legos. Sign up and be the first to know when we launch!</p>
+            {/* <h1 className="text-xl mobile:text-4xl font-extrabold">The Brick Bucket</h1> */}
+            <Image
+              src="/logo.svg"
+              alt="The Brick Bucket Logo"
+              width={300}
+              height={500}
+            />
+            <p className="text-base mobile:text-lg mt-4">We&apos;re building a new way to experience the joy of LEGO®. Sign up and be the first to know when we launch!</p>
             <div className="email-form">
               <form
               onSubmit={subscribe}
@@ -87,13 +93,13 @@ export default function Home() {
             <h1 className="text-dark-text mobile:text-white mb-6 text-xl mobile:text-4xl font-extrabold">What You&apos;ll Get</h1>
             <div className="grid mobile:grid-cols-3 items-center gap-8">
               <div className="info-card w-full h-full p-6 border-solid border-2 bg-dark-text border-yellow text-white rounded-lg">
-                <p>Unleash your creativity with a new selection of Lego sets to choose from each month.</p>
+                <p>Unleash your creativity with a new selection of LEGO® sets to choose from each month.</p>
               </div>
               <div className="info-card w-full h-full p-6 border-solid border-2 bg-dark-text border-green text-white rounded-lg">
                 <p>No need to find more storage for your sets. Say goodbye to clutter and hello to more fun.</p>
               </div>
               <div className="info-card w-full h-full p-6 border-solid border-2 bg-dark-text border-pink text-white rounded-lg">
-                <p>Rent as much or as little as you want  - perfect for parents and Lego enthusiasts alike!</p>
+                <p>Rent as much or as little as you want  - perfect for parents and LEGO® enthusiasts alike!</p>
               </div>
             </div>
           </div>
@@ -101,12 +107,13 @@ export default function Home() {
       <section className="bg-dark-text text-white pb-24">
       <div className="container mx-auto p-8 desktop:px-24 items-center">
         <h1 className="text-white mb-6	text-xl mobile:text-4xl font-extrabold">Your toy box is about to get a lot bigger.</h1>
-        <p className="text-base mobile:text-lg">Are you a Lego enthusiast looking for a more affordable and flexible way to explore different sets? Our monthly Lego rental service provides an endless supply of sets to choose from, with convenient delivery options that make it easy to switch things up. Say goodbye to clutter and hello to creativity.</p>
+        <p className="text-base mobile:text-lg">Are you a LEGO® enthusiast looking for a more affordable and flexible way to explore different sets? Our monthly LEGO® rental service provides an endless supply of sets to choose from, with convenient delivery options that make it easy to switch things up. Say goodbye to clutter and hello to creativity.</p>
       </div>
       </section>
       <section className="footer bg-dark-text">
         <div className="container mx-auto p-4 px-8 desktop:px-24">
           <hr className="mt-8 h-px bg-white"/>
+          <p className="text-xs pt-4 text-white">LEGO® is a registered trademark belonging to LEGO® Juris A/S a Denmark Corporation (The Lego Group) and the product names, logos and brands are the property of The Lego Group.  The Brick Bucket, LLC is not affiliated, associated, authorized, endorsed by, or in any way officially connected to The Lego Group or any of its subsidiaries or its affiliates.</p>
           <div className="flex justify-end gap-4 pt-4 items-center">
             <a href="http://">
               <FontAwesomeIcon className="text-white hover:text-gray-500 h-6 w-6" icon={faInstagram} />
